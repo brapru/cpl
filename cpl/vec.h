@@ -41,6 +41,10 @@ static inline void vector_free(cpl_vector *v) {
         v->size = v->capacity= 0;
 }
 
+static inline bool vector_is_empty(cpl_vector *v){
+        return (v->size == 0) ? true : false;
+}
+
 static inline size_t vector_size(cpl_vector *v){
         return v->size;
 }
