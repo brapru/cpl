@@ -1,12 +1,17 @@
-CC = gcc -std=c11
+CC = gcc
 
 CFLAGS  = -Icpl
+CFLAGS += -std=c99
 CFLAGS += -Wall -Wextra -Wpedantic -Wfatal-errors
 
-all: cpl-test
+TESTS = \
+	tests/test_cpl.c \
+	tests/test_vec.c
 
 cpl-test:
-	$(CC) $(CFLAGS) cpl.c -o cpl-test
+	$(CC) $(CFLAGS) -o ./tests/cpl-test -g $(TESTS) 
+	@./tests/cpl-test
+	@rm -f ./tests/cpl-test
 
 clean:
-	rm -rf cpl-test
+	@rm -f ./tests/cpl-test
