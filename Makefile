@@ -12,6 +12,8 @@ cpl-test:
 	$(CC) $(CFLAGS) -o ./tests/cpl-test -g $(TESTS) 
 	@./tests/cpl-test
 	@rm -f ./tests/cpl-test
+	@rm -rf ./tests/cpl-test.dSYM/
 
 clean:
 	@rm -f ./tests/cpl-test
+	@rm -rf ./tests/cpl-test.dSYM/

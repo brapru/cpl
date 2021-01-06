@@ -11,22 +11,37 @@ void test_empty_before_push(cpl_vector *vec){
 		(vector_empty(vec) == true));
 }
 
+void test_push_back(cpl_vector *vec){
+        int loops = TEST_RAND(TEST_MAX_ITER);
+       
+        for (int loop = 0; loop < loops; loop++){
+                vector_push_back(vec, loop);
+        } 
+        
+        CHECK("Check length after push_back",
+                (vector_size(vec) == (size_t)loops));
+
+        CHECK("Check first value pushed",
+                (vec->data[0] == 0));
+        
+        CHECK("Check last value pushed",
+                (vec->data[vec->size - 1] == loops-1));
+}
+
 void test_empty_after_push(cpl_vector *vec){
-	CHECK("Check empty before push_back",
+	CHECK("Check empty after push_back",
 		(vector_empty(vec) == false));
 }
 
 void test_vector(void){
-	printf("TEST: %s\n", __FILE__);
-	
+        TESTING(__FILE__);
+
 	cpl_vector *vec = vector(5);
 
 	test_base(vec);
 	test_empty_before_push(vec);
 
-        for (int i = 0; i < 100; i++){
-                vector_push_back(vec, i);
-        }
+        test_push_back(vec);
 
 	test_empty_after_push(vec);
 

@@ -3,9 +3,9 @@
 void test_vector();
 
 int main(void){
-	printf("%s\n", __FILE__);
-	test_vector();
-	
+	srand(time(0));
+  
+        test_vector();
 	test_report();	
 }
 
