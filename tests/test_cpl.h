@@ -8,6 +8,8 @@
 
 #define TEST_MAX_ITER 512
 
+#define TEST_MAX_RAND 512
+
 #define CHECK(descr, _c) check(descr, _c)
 
 #define TESTING(f) printf("TESTING: %s\n", f)

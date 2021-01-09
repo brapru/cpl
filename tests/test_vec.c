@@ -33,6 +33,18 @@ void test_empty_after_push(cpl_vector *vec){
 		(vector_empty(vec) == false));
 }
 
+void test_reserve(void){
+        cpl_vector *vec = vector(0);
+        int reserve = TEST_RAND(TEST_MAX_RAND);
+
+        vector_reserve(vec, reserve); 
+
+        CHECK("Check reserve",
+                (vec->capacity == (size_t)reserve));
+
+        vector_free(vec);
+}
+
 void test_vector(void){
         TESTING(__FILE__);
 
@@ -40,10 +52,10 @@ void test_vector(void){
 
 	test_base(vec);
 	test_empty_before_push(vec);
-
         test_push_back(vec);
-
 	test_empty_after_push(vec);
 
-	vector_free(vec);
+        test_reserve();
+ 
+        vector_free(vec); 
 }

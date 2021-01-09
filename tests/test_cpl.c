@@ -10,7 +10,6 @@ int main(void){
 }
 
 /* Test Helpers */
-
 static int __failed_tests = 0;
 static int __test_num = 0;
 
@@ -33,5 +32,4 @@ void test_report(void){
 		printf("WARNING! There was a failed test.\n");
 		exit(1);
 	}
-
 }

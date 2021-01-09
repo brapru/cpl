@@ -37,8 +37,9 @@ static inline void vector_push_back(cpl_vector *v, int val) {
 
 static inline void vector_free(cpl_vector *v) {
         free(v->data);
+        free(v);
         v->data = NULL;
-        v->size = v->capacity= 0;
+        v = NULL;
 }
 
 static inline bool vector_empty(cpl_vector *v){
@@ -51,4 +52,9 @@ static inline size_t vector_size(cpl_vector *v){
 
 static inline size_t vector_capacity(cpl_vector *v){
         return v->capacity;
+}
+
+static inline void vector_reserve(cpl_vector *v, size_t capacity){
+        v->capacity = capacity; 
+        v->data = (int*)realloc(v->data, v->capacity * sizeof(int));
 }

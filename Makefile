@@ -1,7 +1,7 @@
 CC = gcc
 
 CFLAGS  = -Icpl
-CFLAGS += -std=c99
+CFLAGS += -std=c11
 CFLAGS += -Wall -Wextra -Wpedantic -Wfatal-errors
 
 TESTS = \
