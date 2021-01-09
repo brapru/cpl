@@ -45,6 +45,36 @@ void test_reserve(void){
         vector_free(vec);
 }
 
+void test_resize(void){
+        cpl_vector *vec = vector(0);
+  
+        int increase = vec->size + TEST_RAND(TEST_MAX_RAND);
+        vector_resize(vec, increase);
+
+        CHECK("Check increase resize matches size",
+                (vec->size == (size_t)increase)); 
+
+        CHECK("Check increase resize matches capacity",
+                (vec->capacity == (size_t)increase)); 
+     
+        int double_increase = vec->size + TEST_RAND(TEST_MAX_RAND);
+        vector_resize(vec, double_increase);
+        
+        CHECK("Check double increase resize increases capacity",
+                (vec->capacity > (size_t)increase)); 
+
+        int decrease = vec->size - TEST_RAND(TEST_MAX_RAND);
+        vector_resize(vec, decrease);
+
+        CHECK("Check decrease resize matches size",
+                (decrease > 0 ? (vec->size == (size_t)decrease) : (vec->size == 0)));
+
+        CHECK("Check decrease resize matches same capacity",
+                (vec->capacity == vec->capacity)); 
+
+        vector_free(vec);
+}
+
 void test_vector(void){
         TESTING(__FILE__);
 
@@ -56,6 +86,7 @@ void test_vector(void){
 	test_empty_after_push(vec);
 
         test_reserve();
- 
+        test_resize();
+
         vector_free(vec); 
 }

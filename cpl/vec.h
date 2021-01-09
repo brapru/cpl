@@ -58,3 +58,14 @@ static inline void vector_reserve(cpl_vector *v, size_t capacity){
         v->capacity = capacity; 
         v->data = (int*)realloc(v->data, v->capacity * sizeof(int));
 }
+
+static inline void vector_resize(cpl_vector *v, size_t size){
+        size = ((int)size < 0) ? 0 : size; 
+
+        if (size > v->capacity){
+                v->capacity = size;
+                v->data = (int*)realloc(v->data, v->capacity * sizeof(int));  
+        }
+        
+        v->size = size; 
+}
