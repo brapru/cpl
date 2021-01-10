@@ -91,11 +91,26 @@ void test_shrink_to_fit(void){
 	cpl_vector *vec = vector(100);
 	
 	vector_resize(vec, 50);
-
 	vector_shrink_to_fit(vec);
 
 	CHECK("Check capacity after shrink_to_fit",
 		(vec->capacity == 50 && vec->size == vec->capacity));
+
+	vector_resize(vec, 0);
+	vector_shrink_to_fit(vec);
+
+	CHECK("Check after resize to zero",
+		(vec->capacity == 0));
+
+        int loops = TEST_RAND(TEST_MAX_ITER);
+        for (int loop = 0; loop < loops; loop++){
+                vector_push_back(vec, loop);
+	}
+	
+	vector_shrink_to_fit(vec);
+	CHECK("Check capacity after adding elements",
+		(vec->capacity == (size_t)loops));
+	
 }
 
 void test_vector(void){
