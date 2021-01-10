@@ -97,10 +97,10 @@ void test_vector(void){
         test_push_back(vec);
 	test_empty_after_push(vec);
 
+        vector_free(vec); 
+	
 	test_at();
-
         test_reserve();
         test_resize();
 
-        vector_free(vec); 
 }
