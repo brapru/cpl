@@ -75,3 +75,8 @@ static inline void vector_resize(cpl_vector *v, size_t size){
         
         v->size = size; 
 }
+
+static inline void vector_shrink_to_fit(cpl_vector *v){
+	v->capacity = v->size;
+	v->data = (int*)realloc(v->data, v->capacity * sizeof(int));
+}

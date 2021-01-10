@@ -87,6 +87,17 @@ void test_resize(void){
         vector_free(vec);
 }
 
+void test_shrink_to_fit(void){
+	cpl_vector *vec = vector(100);
+	
+	vector_resize(vec, 50);
+
+	vector_shrink_to_fit(vec);
+
+	CHECK("Check capacity after shrink_to_fit",
+		(vec->capacity == 50 && vec->size == vec->capacity));
+}
+
 void test_vector(void){
         TESTING(__FILE__);
 
@@ -102,5 +113,5 @@ void test_vector(void){
 	test_at();
         test_reserve();
         test_resize();
-
+	test_shrink_to_fit();
 }
