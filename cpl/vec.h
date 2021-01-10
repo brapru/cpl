@@ -26,10 +26,16 @@ static inline cpl_vector* vector(size_t capacity) {
         return v;
 }
 
+static inline int vector_at(cpl_vector *v, size_t index){
+	return v->data[index];
+}
+
 static inline void vector_push_back(cpl_vector *v, int val) {
         if (v->capacity == v->size) {
-                v->capacity *= 2;
-                v->data = (int*)realloc(v->data, v->capacity * sizeof(int));
+                v->capacity = (v->capacity == 0) ? 1 : v->capacity;
+                
+		v->capacity *= 2;
+		v->data = (int*)realloc(v->data, v->capacity * sizeof(int));
         }
 
         v->data[v->size++] = val;
@@ -37,8 +43,8 @@ static inline void vector_push_back(cpl_vector *v, int val) {
 
 static inline void vector_free(cpl_vector *v) {
         free(v->data);
-        free(v);
         v->data = NULL;
+        free(v);
         v = NULL;
 }
 

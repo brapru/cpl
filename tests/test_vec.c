@@ -6,9 +6,16 @@ void test_base(cpl_vector *vec){
 		vec != NULL);
 }
 
-void test_empty_before_push(cpl_vector *vec){
-	CHECK("Check empty before push_back",
-		(vector_empty(vec) == true));
+void test_at(void){
+	cpl_vector *vec = vector(0);
+	int val = TEST_RAND(TEST_MAX_RAND);
+	
+	vector_push_back(vec, val);
+
+	CHECK("Check lookup by index",
+		(vector_at(vec, 0) == val));
+
+	vector_free(vec);
 }
 
 void test_push_back(cpl_vector *vec){
@@ -26,6 +33,11 @@ void test_push_back(cpl_vector *vec){
         
         CHECK("Check last value pushed",
                 (vec->data[vec->size - 1] == loops-1));
+}
+
+void test_empty_before_push(cpl_vector *vec){
+	CHECK("Check empty before push_back",
+		(vector_empty(vec) == true));
 }
 
 void test_empty_after_push(cpl_vector *vec){
@@ -84,6 +96,8 @@ void test_vector(void){
 	test_empty_before_push(vec);
         test_push_back(vec);
 	test_empty_after_push(vec);
+
+	test_at();
 
         test_reserve();
         test_resize();
