@@ -31,9 +31,13 @@ static inline int vector_at(cpl_vector *v, size_t index){
 }
 
 static inline void vector_erase(cpl_vector *v, size_t index){
+	if (index > v->size)
+		return;
+
 	for (size_t i = index; i < v->size; i++){
 		v->data[i] = v->data[i+1];
 	}	
+	
 	v->size--;
 }
 
@@ -49,7 +53,10 @@ static inline void vector_push_back(cpl_vector *v, int val) {
 }
 
 static inline int vector_pop_back(cpl_vector *v){
-	return 0;	
+	int pop_val = v->data[v->size - 1];
+	vector_erase(v, v->size - 1);
+	
+	return pop_val;
 }
 
 static inline void vector_free(cpl_vector *v) {

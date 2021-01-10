@@ -160,7 +160,7 @@ void test_vector(void){
         vector_free(vec); 
 
 	test_erase();
-	//test_pop_back();	
+	test_pop_back();	
 	test_at();
         test_reserve();
         test_resize();
