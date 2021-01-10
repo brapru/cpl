@@ -18,6 +18,27 @@ void test_at(void){
 	vector_free(vec);
 }
 
+void test_erase(void){
+	cpl_vector *vec = vector(0);
+
+	int loops = TEST_RAND(TEST_MAX_ITER);
+	for (int loop = 0; loop < loops; loop++){
+		vector_push_back(vec, TEST_RAND(TEST_MAX_RAND));
+	}
+
+	int index = TEST_RAND(vec->size);
+	int b_val = vector_at(vec,index+1);
+	size_t b_size = vector_size(vec);
+	
+	vector_erase(vec, index);
+	
+	CHECK("Check size after index erase",
+		(vector_size(vec) == b_size-1));
+
+	CHECK("Check values after index erase",
+		(vector_at(vec, index) == b_val));
+}
+
 void test_push_back(cpl_vector *vec){
         int loops = TEST_RAND(TEST_MAX_ITER);
        
@@ -33,6 +54,18 @@ void test_push_back(cpl_vector *vec){
         
         CHECK("Check last value pushed",
                 (vec->data[vec->size - 1] == loops-1));
+}
+
+void test_pop_back(void){
+        cpl_vector *vec = vector(0);
+
+	int val = TEST_RAND(TEST_MAX_RAND);	
+	vector_push_back(vec, val);	
+
+	int pop_val = vector_pop_back(vec);
+
+	CHECK("Check value of pop_back",
+		(val == pop_val));
 }
 
 void test_empty_before_push(cpl_vector *vec){
@@ -125,7 +158,9 @@ void test_vector(void){
 	test_empty_after_push(vec);
 
         vector_free(vec); 
-	
+
+	test_erase();
+	//test_pop_back();	
 	test_at();
         test_reserve();
         test_resize();
