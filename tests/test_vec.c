@@ -108,6 +108,7 @@ void test_shrink_to_fit(void){
 	}
 	
 	vector_shrink_to_fit(vec);
+	
 	CHECK("Check capacity after adding elements",
 		(vec->capacity == (size_t)loops));
 	
