@@ -1,12 +1,14 @@
 #include "test_cpl.h"
 
 void test_vector();
+void test_quick();
 
 int main(void){
 	srand(time(0));
   
         test_vector();
-	test_report();	
+	test_quick();
+        test_report();	
 }
 
 /* Test Helpers */
