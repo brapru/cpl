@@ -2,13 +2,15 @@
 
 void test_vector();
 void test_quick();
+void test_binsearch();
 
 int main(void){
 	srand(time(0));
   
         test_vector();
 	test_quick();
-        test_report();	
+        test_binsearch();
+	test_report();	
 }
 
 /* Test Helpers */
