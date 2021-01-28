@@ -8,7 +8,7 @@ TESTS = \
 	tests/test_cpl.c \
 	tests/test_vec.c \
 	tests/test_quick.c \
-	tests/test_bsearch.c
+	tests/test_binsearch.c
 
 cpl-test:
 	$(CC) $(CFLAGS) -o ./tests/cpl-test -g $(TESTS) 

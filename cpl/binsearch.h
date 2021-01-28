@@ -1,24 +1,19 @@
 #include "cpl.h"
+#include "vec.h"
 
-/*
- * max, min
- *
- * if min > max:
- * 	return NOTFOUND;
- *
- * get_midpoint
- * 
- * if get_midpoint = key ?
- *	return midpoint;
- *
- * if get_midpoint < key
- * 	binsearch(get_midpoint + 1)
- * 
- * if get_midpoint > key
- * 	binsearch(get_midpoint - 1)
- *
- */
+#define NOTFOUND -1
 
-static inline void binsearch(void){
-	printf("BSEARCH\n");
+static inline int binsearch(int key, cpl_vector *v, int min, int max){
+        if (min > max)
+                return NOTFOUND;
+
+        int midpoint = (min + max) / 2; 
+
+        if (v->data[midpoint] < key)
+                return binsearch(key, v, midpoint + 1, max);
+        
+        if (v->data[midpoint] > key)
+                 return binsearch(key, v, min, midpoint - 1);
+        
+        return midpoint; 
 }
