@@ -14,6 +14,12 @@ void test_bs(void){
 
         CHECK("Check matching key in binary search",
 		(key == vec->data[index]));
+
+        key = loops + 1;
+        index = binsearch(key, vec, 0, vector_size(vec)); 
+
+        CHECK("Check non-matching key in binary search",
+                (index == NOTFOUND));
 }
 
 void test_binsearch(void){
